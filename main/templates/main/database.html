@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+
+
+{% block content %}
+
+     <br/>
+
+    <div class="container">
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                     <th>Product code</th>
+                     <th>Name</th>
+                     <th>Supplier</th>
+                     <th>Price</th>
+                </tr>
+            </thead>
+             {% for item in product %}
+                <tbody>
+                    <tr>
+                         <td>{{ item.product_code }}</td>
+                         <td>{{ item.name }}</td>
+                         <td>{{ item.supplier_name }}</td>
+                         <td>{{ item.price }}</td>
+                    </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+    </div>
+
+
+{% endblock content %}

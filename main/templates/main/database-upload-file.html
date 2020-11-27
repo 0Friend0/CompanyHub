@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+
+
+{% block content %}
+
+
+
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    Select master file to upload:
+    <input type="file" name="master-file">
+    <button type="submit" name="submit"> Upload file</button>
+</form>
+
+
+{% endblock content %}
