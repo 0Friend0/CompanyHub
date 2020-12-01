@@ -18,9 +18,9 @@
              {% for item in product %}
                 <tbody>
                     <tr>
-                         <td>{{ item.product_code }}</td>
-                         <td>{{ item.name }}</td>
-                         <td>{{ item.supplier_name }}</td>
+                        <td>{{ item.product_code }} </td>
+                         <td><a href=" {% url 'main-product-detail' item.pk %}"> {{ item.name }} </a></td>
+                        <td><a href=" {% url 'main-supplier-detail' item.supplier_name.pk %}"> {{ item.supplier_name }} </a></td>
                          <td>{{ item.price }}</td>
                     </tr>
                 </tbody>

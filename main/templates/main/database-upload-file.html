@@ -6,11 +6,11 @@
 
 
 
-<form method="POST" enctype="multipart/form-data">
+<form enctype="multipart/form-data" method="post" action="">
     {% csrf_token %}
     Select master file to upload:
     <input type="file" name="master-file">
-    <button type="submit" name="submit"> Upload file</button>
+    <button type="submit" name="submit" class="btn btn-primary"> Upload file</button>
 </form>
 
 

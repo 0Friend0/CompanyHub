@@ -21,8 +21,13 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'main-home' %}">Home</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'main-database' %}">Database</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownDatabase" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Database
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownDatabase">
+                  <a class="dropdown-item" href="{% url 'main-database-product' %}">Products</a>
+                  <a class="dropdown-item" href="{% url 'main-database-supplier' %}">Suppliers</a>
               </li>
 
               <li class="nav-item dropdown">

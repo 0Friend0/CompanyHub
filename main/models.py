@@ -5,7 +5,7 @@ from django.urls import reverse
 class Product(models.Model):
     product_code = models.CharField(max_length=50)
     name = models.CharField(max_length=100)
-    supplier_name = models.ForeignKey('Supplier', on_delete=models.CASCADE)
+    supplier_name = models.ForeignKey('Supplier', on_delete=models.CASCADE, null=True)
     price = models.FloatField()
 
     def __str__(self):
