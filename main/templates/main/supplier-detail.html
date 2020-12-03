@@ -2,9 +2,12 @@
 
 {% block content %}
 
-<h1>{{ object.supplier_name }}</h1>
-<p>Email: {{ object.email }}</p>
-<p>Phone number: </p>
+<div class="container">
+    <h1>{{ object.supplier_name }}</h1>
+    <p>Email: {{ object.email }}</p>
+    <p>Phone number: </p>
 
+    <button type="button" class="btn btn-outline-info"><a href="{% url 'main-supplier-update' object.pk%}">Update</a> </button>
 
+</div>
 {% endblock content %}

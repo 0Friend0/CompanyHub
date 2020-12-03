@@ -12,7 +12,7 @@ class Product(models.Model):
         return self.product_code + ' ' + self.name
 
     def get_absolute_url(self):
-        return reverse('main-database')
+        return reverse('main-database-product')
 
 
 class Supplier(models.Model):
@@ -23,4 +23,4 @@ class Supplier(models.Model):
         return self.supplier_name
 
     def get_absolute_url(self):
-        return reverse('main-database')
+        return reverse('main-database-supplier')
