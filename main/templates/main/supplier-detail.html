@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h1>{{ object.supplier_name }}</h1>
+    <p>Email: {{ object.email }}</p>
+    <p>Phone number: </p>
+
+    <a class="btn btn-primary" href="{% url 'main-update-supplier' object.pk%}">Update</a>
+    <a class="btn btn-danger" href="{% url 'main-delete-supplier' object.pk%}">Delete</a>
+
+</div>
+{% endblock content %}

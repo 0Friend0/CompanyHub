@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+
+
+{% block content %}
+
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token  %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4"> Delete supplier</legend>
+                <p>Are you sure you want to delete supplier:</p>
+                <h4>{{ object.supplier_name }}</h4>
+
+            </fieldset>
+            <div>
+                <button class="btn btn-danger" type="submit">Delete</button>
+            </div>
+        </form>
+
+    </div>
+{% endblock content %}
