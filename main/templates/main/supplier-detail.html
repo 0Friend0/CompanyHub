@@ -7,7 +7,8 @@
     <p>Email: {{ object.email }}</p>
     <p>Phone number: </p>
 
-    <button type="button" class="btn btn-outline-info"><a href="{% url 'main-supplier-update' object.pk%}">Update</a> </button>
+    <a class="btn btn-primary" href="{% url 'main-update-supplier' object.pk%}">Update</a>
+    <a class="btn btn-danger" href="{% url 'main-delete-supplier' object.pk%}">Delete</a>
 
 </div>
 {% endblock content %}

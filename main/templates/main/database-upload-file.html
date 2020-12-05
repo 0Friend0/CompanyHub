@@ -1,17 +1,24 @@
 {% extends 'main/base.html' %}
 
-
 {% block content %}
 
+<div class="content-section">
 
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4"> Upload Master File</legend>
 
+            </fieldset>
 
-<form enctype="multipart/form-data" method="post" action="">
-    {% csrf_token %}
-    Select master file to upload:
-    <input type="file" name="master-file">
-    <button type="submit" name="submit" class="btn btn-primary"> Upload file</button>
-</form>
+    <form enctype="multipart/form-data" method="post" action="">
+        {% csrf_token %}
+        <p>Select master file to upload:</p>
+        <input type="file" name="master-file">
 
+        <div>
+        </br>
+            <button type="submit" name="submit" class="btn btn-primary"> Upload file</button>
+        </div>
+    </form>
 
+</div>
 {% endblock content %}

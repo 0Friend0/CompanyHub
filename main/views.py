@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from openpyxl import load_workbook
 from .models import Product, Supplier
-from django.views.generic import ListView, CreateView, DetailView, UpdateView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from .forms import UploadFileForm
 from django.db.models import Q
 
@@ -48,6 +48,7 @@ class SearchSupplierListView(ListView):
 
         return object_list
 
+
 class ProductCreateView(CreateView):
     model = Product
     fields = ['product_code', 'name', 'supplier_name', 'price']
@@ -73,13 +74,26 @@ class SupplierDetailView(DetailView):
 class SupplierUpdateView(UpdateView):
     model = Supplier
     fields = ['supplier_name', 'email']
-    template_name = 'main/database-create-supplier.html'
+    template_name = 'main/database-update-supplier.html'
 
 
 class ProductUpdateView(UpdateView):
     model = Product
     fields = ['product_code', 'name', 'supplier_name', 'price']
-    template_name = 'main/database-create-product.html'
+    template_name = 'main/database-update-product.html'
+
+
+class ProductDeleteView(DeleteView):
+    model = Product
+    template_name = 'main/database-delete-product.html'
+    success_url = '/database/product'
+
+
+class SupplierDeleteView(DeleteView):
+    model = Supplier
+    template_name = 'main/database-delete-supplier.html'
+    success_url = '/database/supplier'
+
 
 
 def database_upload(request):

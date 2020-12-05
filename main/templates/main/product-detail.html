@@ -2,13 +2,18 @@
 
 {% block content %}
 
-<div class="container">
+<div>
     <h1>{{ object.product_code }}  {{ object.name }}</h1>
     <p>Supplier: {{ object.supplier_name }}</p>
     <p>Price: {{ object.price }}</p>
+</div>
 
-
-    <button type="button" class="btn btn-outline-info"><a href="{% url 'main-product-update' object.pk%}">Update</a> </button>
+<div>
+    <a class="btn btn-primary" href="{% url 'main-update-product' object.pk%}">Update</a>
+    <a class="btn btn-danger" href="{% url 'main-delete-product' object.pk%}">Delete</a>
 
 </div>
+
+
+
 {% endblock content %}

@@ -7,11 +7,11 @@
         <form method="POST">
             {% csrf_token  %}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4"> Add new product</legend>
+                <legend class="border-bottom mb-4"> Update supplier</legend>
                 {{ form|crispy }}
             </fieldset>
             <div>
-                <button class="btn btn-success" type="submit">Create</button>
+                <button class="btn btn-primary" type="submit">Update</button>
             </div>
         </form>
 
