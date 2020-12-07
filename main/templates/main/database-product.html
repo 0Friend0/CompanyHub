@@ -16,28 +16,62 @@
     </div>
 
 
-        <table class="table table-bordered">
-            <thead class="thead-dark">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                 <th>Product code</th>
+                 <th>Name</th>
+                 <th>Supplier</th>
+                 <th>Price</th>
+            </tr>
+        </thead>
+         {% for item in product %}
+
+            <tbody>
                 <tr>
-                     <th>Product code</th>
-                     <th>Name</th>
-                     <th>Supplier</th>
-                     <th>Price</th>
+                    <td>{{ item.product_code }} </td>
+                     <td><a href=" {% url 'main-product-detail' item.pk %}"> {{ item.name }} </a></td>
+                    {% if item.supplier_name == None %}
+                     <td>None</td>
+                    {% else %}
+                     <td><a href=" {% url 'main-supplier-detail' item.supplier_name.pk %}"> {{ item.supplier_name }} </a></td>
+                    {% endif %}
+                     <td>{{ item.price }}</td>
                 </tr>
-            </thead>
-             {% for item in product %}
+            </tbody>
 
-                <tbody>
-                    <tr>
-                        <td>{{ item.product_code }} </td>
-                         <td><a href=" {% url 'main-product-detail' item.pk %}"> {{ item.name }} </a></td>
-                        <td><a href=" {% url 'main-supplier-detail' item.supplier_name.pk %}"> {{ item.supplier_name }} </a></td>
-                         <td>{{ item.price }}</td>
-                    </tr>
-                </tbody>
+        {% endfor %}
+    </table>
 
-            {% endfor %}
-        </table>
+
+    {% if is_paginated %}
+
+       {% if page_obj.number > 2 %}
+            <a class="btn btn-outline-info" href="?page=1">1</a>
+            {% if page_obj.number > 3 %}
+                ...
+            {% endif %}
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <a class="btn btn-info" href="?page={{num}}">{{num}}</a>
+            {% elif num > page_obj.number|add:'-2' and num < page_obj.number|add:'2' %}
+                <a class="btn btn-outline-info" href="?page={{num}}">{{num}}</a>
+            {% endif %}
+         {% endfor %}
+
+        {% if page_obj.number != page_obj.paginator.num_pages|add:'-1' %}
+            {% if page_obj.number == page_obj.paginator.num_pages %}
+            {% elif page_obj.number == page_obj.paginator.num_pages|add:'-2' %}
+                <a class="btn btn-outline-info" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+            {% else %}
+                ...<a class="btn btn-outline-info" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+            {% endif %}
+        {% endif %}
+
+    {% endif %}
+
 
 
 

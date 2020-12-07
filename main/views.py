@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from openpyxl import load_workbook
 from .models import Product, Supplier
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
+from django.contrib.messages.views import SuccessMessageMixin
 from .forms import UploadFileForm
 from django.db.models import Q
 
@@ -19,11 +20,14 @@ class DatabaseProductListView(ListView):
     model = Product
     template_name = 'main/database-product.html'
     context_object_name = 'product'
+    paginate_by = 2
 
 
 class SearchProductListView(ListView):
     model = Product
     template_name = 'main/search-product.html'
+    paginate_by = 2
+
 
     def get_queryset(self):
         query = self.request.GET.get("q")
@@ -36,11 +40,14 @@ class DatabaseSupplierListView(ListView):
     model = Supplier
     template_name = 'main/database-supplier.html'
     context_object_name = 'supplier'
+    paginate_by = 25
 
 
 class SearchSupplierListView(ListView):
     model = Supplier
     template_name = 'main/search-supplier.html'
+    paginate_by = 25
+
 
     def get_queryset(self):
         query = self.request.GET.get("q")
@@ -49,16 +56,18 @@ class SearchSupplierListView(ListView):
         return object_list
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(SuccessMessageMixin, CreateView):
     model = Product
     fields = ['product_code', 'name', 'supplier_name', 'price']
     template_name = 'main/database-create-product.html'
+    success_message = '%(name)s was created successfully!'
 
 
-class SupplierCreateView(CreateView):
+class SupplierCreateView(SuccessMessageMixin, CreateView):
     model = Supplier
     fields = ['supplier_name', 'email']
     template_name = 'main/database-create-supplier.html'
+    success_message = '%(supplier_name)s was created successfully!'
 
 
 class ProductDetailView(DetailView):
@@ -71,16 +80,18 @@ class SupplierDetailView(DetailView):
     template_name = 'main/supplier-detail.html'
 
 
-class SupplierUpdateView(UpdateView):
+class SupplierUpdateView(SuccessMessageMixin, UpdateView):
     model = Supplier
     fields = ['supplier_name', 'email']
     template_name = 'main/database-update-supplier.html'
+    success_message = '%(supplier_name)s was updated successfully!'
 
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(SuccessMessageMixin, UpdateView):
     model = Product
     fields = ['product_code', 'name', 'supplier_name', 'price']
     template_name = 'main/database-update-product.html'
+    success_message = '%(name)s was updated successfully!'
 
 
 class ProductDeleteView(DeleteView):
@@ -116,7 +127,7 @@ def database_upload(request):
                     p.supplier_name = s
                     p.save()
 
-        return render(request, 'main/database-upload-file.html', {'file_form': file_form})
+        return render(request, 'main/database-upload-file.html', {'file_form': file_form, 'upload': False})
     else:
         file_form = UploadFileForm()
         return render(request, 'main/database-upload-file.html', {'file_form': file_form})

@@ -2,12 +2,22 @@
 
 {% block content %}
 
+
 <div class="content-section">
 
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4"> Upload Master File</legend>
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4"> Upload Master File</legend>
 
-            </fieldset>
+    </fieldset>
+
+    <div>
+    {% if upload == False %}
+        <p class="text-danger">There was an error with upload. Please see: <a href="">How to upload Master File</a> tutorial.</p>
+    {% endif %}
+
+    </div>
+
+
 
     <form enctype="multipart/form-data" method="post" action="">
         {% csrf_token %}
